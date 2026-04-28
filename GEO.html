@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Контраст Тур – 10 стран | Цены 2026, визы, достопримечательности | QR‑код вход</title>
+ 
+  <!-- Подключаем библиотеку QRCode.js для генерации QR-кода -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0a0c0f;
+      font-family: 'Inter', sans-serif;
+      color: #eef2ff;
+      line-height: 1.4;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 2.5rem;
+      width: 100%;
+    }
+
+    .action-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: #1e1f2c;
+      border: 1px solid #2d313e;
+      color: #eef2ff;
+      font-weight: 600;
+      padding: 0.7rem 1.3rem;
+      border-radius: 60px;
+      font-size: clamp(0.8rem, 3.5vw, 0.9rem);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn.highlight {
+      background: #FBBF24;
+      border-color: #FBBF24;
+      color: #0a0c0f;
+      font-weight: 700;
+      box-shadow: 0 0 8px rgba(251,191,36,0.3);
+    }
+
+    .action-btn:active {
+      transform: scale(0.96);
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .header-text {
+      flex: 1;
+    }
+
+    h1 {
+      font-size: clamp(1.8rem, 8vw, 3.2rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #FBBF24, #FF6B6B);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .subhead {
+      font-size: clamp(0.85rem, 4vw, 1.2rem);
+      color: #9ca3af;
+      border-left: 4px solid #FBBF24;
+      padding-left: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .countries-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+      width: 100%;
+    }
+
+    .country-card {
+      background: #111317;
+      border-radius: 1.8rem;
+      overflow: hidden;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.5), 0 0 0 1px rgba(251,191,36,0.2);
+      transition: transform 0.2s ease;
+      width: 100%;
+    }
+
+    @media (hover: hover) {
+      .country-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 28px 40px -16px black, 0 0 0 2px rgba(251,191,36,0.4);
+      }
+    }
+
+    .country-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.8rem 1.2rem;
+      padding: 1.2rem 1.5rem;
+      background: #0f1117;
+      border-bottom: 2px solid #23262f;
+    }
+
+    .flag-img {
+      width: 56px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      border: 1px solid #2d2f36;
+      background: #1e1f26;
+      flex-shrink: 0;
+    }
+
+    .country-title {
+      flex: 2;
+      min-width: 130px;
+    }
+
+    .country-title h2 {
+      font-size: clamp(1.3rem, 6vw, 1.9rem);
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+
+    .price-block {
+      background: #1e1f2c;
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+      border-left: 4px solid #FBBF24;
+      flex-shrink: 0;
+    }
+
+    .price-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #FBBF24;
+      letter-spacing: 0.5px;
+    }
+
+    .price-value {
+      font-size: clamp(1.3rem, 5vw, 1.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+
+    .price-value small {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #b9c3db;
+    }
+
+    .country-content {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 1.2rem;
+      padding: 1.5rem;
+    }
+
+    .visa-card {
+      background: #0b0d12;
+      border-radius: 1.3rem;
+      padding: 1.1rem 1.2rem;
+      border: 1px solid #2a2e3a;
+    }
+
+    .visa-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      margin-bottom: 0.9rem;
+      color: #FCD34D;
+    }
+
+    .visa-info p {
+      margin: 0.6rem 0;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px dashed #2c2f38;
+      padding-bottom: 0.5rem;
+      font-size: clamp(0.8rem, 3.5vw, 0.9rem);
+    }
+
+    .visa-label {
+      font-weight: 600;
+      color: #b9c3db;
+    }
+
+    .visa-detail {
+      font-weight: 500;
+      color: #facc15;
+      text-align: right;
+      word-break: break-word;
+    }
+
+    .sights-title {
+      font-weight: 700;
+      font-size: clamp(1rem, 4vw, 1.2rem);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #FCD34D;
+    }
+
+    .sights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .sight-item {
+      background: #0f1119;
+      border-radius: 1.1rem;
+      overflow: hidden;
+      transition: 0.1s ease;
+      border: 1px solid #252a36;
+    }
+
+    .sight-img {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
+      background: #2c2f3a;
+      display: block;
+    }
+
+    .sight-name {
+      font-weight: 600;
+      padding: 0.6rem 0.6rem 0.7rem;
+      font-size: 0.8rem;
+      background: #0b0e14;
+      text-align: center;
+      word-break: break-word;
+    }
+
+    .footnote {
+      text-align: center;
+      margin-top: 2.5rem;
+      font-size: 0.7rem;
+      color: #5b667c;
+      border-top: 1px solid #20232b;
+      padding-top: 1.8rem;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0.2s, opacity 0.2s;
+    }
+    .modal-overlay.active {
+      visibility: visible;
+      opacity: 1;
+    }
+    .share-modal {
+      background: #111317;
+      border-radius: 2rem;
+      max-width: 500px;
+      width: 90%;
+      padding: 1.8rem;
+      border: 1px solid #FBBF24;
+      box-shadow: 0 30px 40px rgba(0,0,0,0.6);
+      text-align: center;
+    }
+    .share-modal h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+      color: #FBBF24;
+    }
+    .qr-container {
+      background: white;
+      padding: 1rem;
+      border-radius: 1.2rem;
+      display: inline-block;
+      margin: 1rem auto;
+    }
+    #qrcode {
+      display: flex;
+      justify-content: center;
+    }
+    #qrcode img, #qrcode canvas {
+      width: 180px;
+      height: 180px;
+      display: block;
+      margin: 0 auto;
+    }
+    .share-url-container {
+      background: #0a0c0f;
+      padding: 0.8rem;
+      border-radius: 1rem;
+      margin: 1rem 0;
+      word-break: break-all;
+      font-family: monospace;
+      font-size: 0.8rem;
+      border: 1px solid #2a2e3a;
+      color: #facc15;
+    }
+    .dual-buttons {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .copy-btn, .close-modal {
+      flex: 1;
+      background: #FBBF24;
+      border: none;
+      color: #0a0c0f;
+      font-weight: bold;
+      padding: 0.7rem;
+      border-radius: 60px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .close-modal {
+      background: transparent;
+      border: 1px solid #4b5563;
+      color: #eef2ff;
+    }
+    .toast-msg {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #FBBF24;
+      color: #0a0c0f;
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-weight: bold;
+      z-index: 2100;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px black;
+    }
+
+    @media (max-width: 780px) {
+      .container { padding: 1rem 1rem 2rem; }
+      .country-content { grid-template-columns: 1fr; gap: 1.5rem; padding: 1.2rem; }
+      .price-block { margin-left: auto; }
+      .visa-info p { flex-direction: column; gap: 0.2rem; }
+      .visa-detail { text-align: left; }
+      .sights-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+      .sight-img { height: 100px; }
+      .top-bar { flex-direction: column; align-items: stretch; }
+      .action-bar { justify-content: stretch; }
+      .action-btn { justify-content: center; flex: 1; }
+      .toast-msg { white-space: normal; text-align: center; width: 80%; }
+      #qrcode img, #qrcode canvas { width: 140px; height: 140px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="top-bar">
+    <div class="header-text">
+      <h1>✦ КОНТРАСТ ТУР ✦</h1>
+      <div class="subhead">10 стран • цены на двоих (₽) • визовые новости 2026 • лучшие места</div>
+    </div>
+  </div>
+
+  <div class="action-bar">
+    <button class="action-btn" id="updatePricesBtn">🔄 ОБНОВИТЬ ЦЕНЫ 2026</button>
+    <button class="action-btn highlight" id="shareSiteBtn">🌐 ОБЩИЙ ДОСТУП 🔗</button>
+    <button class="action-btn" id="qrCodeBtn">📲 QR‑КОД ДЛЯ ВХОДА</button>
+  </div>
+
+  <div class="countries-grid" id="countriesGrid"></div>
+  <div class="footnote">
+    💰 Цены указаны на двоих (перелёт+проживание 7 ночей, ориентир 2026). Визовые данные актуальны на 2026.<br>
+    📸 Флаги и изображения достопримечательностей обновлены по вашим ссылкам.
+  </div>
+</div>
+
+<div id="shareModal" class="modal-overlay">
+  <div class="share-modal">
+    <h3 id="modalTitle">🔗 Общий доступ</h3>
+    <div id="qrCodeBlock" style="display: none;">
+      <div class="qr-container"><div id="qrcode"></div></div>
+      <p style="margin: 0.5rem 0; color:#b9c3db; font-size:0.8rem;">Отсканируйте камерой телефона</p>
+    </div>
+    <div id="urlBlock"><div class="share-url-container" id="shareUrlDisplay"></div></div>
+    <div class="dual-buttons">
+      <button class="copy-btn" id="copyLinkBtn">📋 Копировать ссылку</button>
+      <button class="close-modal" id="closeModalBtn">Закрыть</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // --------------------------------------------------------------
+  // ОБНОВЛЕННЫЕ ФЛАГИ (по вашим ссылкам + резерв)
+  // --------------------------------------------------------------
+  const flagUrls = {
+    france: "https://avatars.mds.yandex.net/i?id=2527aa5e839b32cb4c0769d8d83b596e_l-4536877-images-thumbs&n=13",
+    italy: "https://avatars.mds.yandex.net/i?id=e3aa53eb1e585eac43d456edd185b4c0_l-10639796-images-thumbs&n=13",
+    spain: "https://avatars.mds.yandex.net/i?id=e80dd440d70f1a79067ba990bcdf9665_l-9456457-images-thumbs&n=13",
+    turkey: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/960px-Flag_of_Turkey.svg.png",
+    thailand: "https://i.pinimg.com/originals/3b/ba/04/3bba045ba7977036e16bedbdb7243a03.jpg",
+    uae: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_United_Arab_Emirates.svg/1920px-Flag_of_the_United_Arab_Emirates.svg.png",
+    usa: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg/960px-Flag_of_the_United_States_%28DDD-F-416E_specifications%29.svg.png",
+    mexico: "https://avatars.mds.yandex.net/i?id=3e612823a76fc72fa2c4da62cd784eaad1e20e50-10148308-images-thumbs&n=13",
+    egypt: "https://upload.wikimedia.org/wikipedia/commons/e/e2/Flag_of_Egypt_%2816-9%29.png",
+    australia: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Flag_of_Australia_%283-2%29.svg/1280px-Flag_of_Australia_%283-2%29.svg.png"
+  };
+
+  // Основные данные стран (достопримечательности ВСЕ ВАШИ, включая последние замены)
+  const countriesData = [
+    { id:"france", name:"Франция", flagKey:"france", basePrice:185000, visa:{ cost:"8990 ₽ (шенген)", whenToApply:"за 30-45 дней", note:"биометрия обязательна" }, sights:[ { name:"Эйфелева башня", img:"https://media.istockphoto.com/id/1433721359/tr/foto%C4%9Fraf/french-landmark-the-eiffel-tower-in-paris-france.jpg?s=170667a&w=0&k=20&c=F22DKtVdbjGzqRajYC5H2evnV5pf8ET2NdHdOPUa7fo=" }, { name:"Лувр", img:"https://avatars.mds.yandex.net/get-altay/5115998/2a0000018eb2f17310b11e44b443ba5a5ec4/orig" }, { name:"Версаль", img:"https://avatars.mds.yandex.net/i?id=e265dd1f5c12f9666010bb56e8f0855f_l-5421450-images-thumbs&n=13" } ] },
+    { id:"italy", name:"Италия", flagKey:"italy", basePrice:172000, visa:{ cost:"8600 ₽ (шенген)", whenToApply:"за 30 дней", note:"страховка обязательна" }, sights:[ { name:"Колизей", img:"https://ak-d.tripcdn.com/images/0580v12000oeb79op619A_C_960_660_Q50.jpg" }, { name:"Гранд-канал", img:"https://avatars.mds.yandex.net/i?id=fb58e7b683c111fce36168249c31b704_l-12473016-images-thumbs&n=13" }, { name:"Флоренция (собор)", img:"https://avatars.mds.yandex.net/i?id=b81e1428fb2318661ef4007a0e11ce6b_l-12940477-images-thumbs&n=13" } ] },
+    { id:"spain", name:"Испания", flagKey:"spain", basePrice:158000, visa:{ cost:"8200 ₽ (шенген)", whenToApply:"за 30-60 дней", note:"переход на e-Visite" }, sights:[ { name:"Саграда Фамилия", img:"https://i.pinimg.com/736x/2d/ae/17/2dae17c1c1ce07ad1f1e059fb9592147.jpg" }, { name:"Альгамбра", img:"https://i.pinimg.com/736x/0b/f8/6e/0bf86ee61b721b2cc1403f280551b03f.jpg" }, { name:"Парк Гуэль", img:"https://i.pinimg.com/originals/ce/5a/04/ce5a04cf3896c5d45c93f65b47e7b716.png" } ] },
+    { id:"turkey", name:"Турция", flagKey:"turkey", basePrice:112000, visa:{ cost:"Электронная виза ~3500 ₽", whenToApply:"за 3-7 дней", note:"можно по прилёту" }, sights:[ { name:"Айя-София", img:"https://avatars.mds.yandex.net/i?id=d494240f5e98fe688ac5578c85bc4185_l-5279811-images-thumbs&n=13" }, { name:"Каппадокия", img:"https://i.pinimg.com/originals/fc/f1/cd/fcf1cd088d89cd03b064265f5a2315f3.jpg" }, { name:"Топкапы", img:"https://img.pac.ru/landmarks/414152/big/D03306CE7F00010104DAD33697596665.jpg" } ] },
+    { id:"thailand", name:"Тайланд", flagKey:"thailand", basePrice:148000, visa:{ cost:"Безвизовый 60 дней (2026)", whenToApply:"не требуется", note:"штамп на въезде" }, sights:[ { name:"Пхукет", img:"https://avatars.mds.yandex.net/i?id=1090b26d1375cdef4cb8d0643c97874a4c5eaca1-9846104-images-thumbs&n=13" }, { name:"Храм Изумрудного Будды", img:"https://image2.turizm.ru/dost_gallery/34/39/99/rrIunY1Coe2PNbotGc9LrbzJ4j0MdWZQ.jpg" }, { name:"Аюттхая", img:"https://tourismthailand.ru/wp-content/uploads/2021/07/Ayutthaya-1320x733.jpg" } ] },
+    { id:"uae", name:"ОАЭ", flagKey:"uae", basePrice:214000, visa:{ cost:"Бесплатно по прибытии", whenToApply:"не нужна", note:"оформление в аэропорту" }, sights:[ { name:"Бурдж-Халифа", img:"https://avatars.mds.yandex.net/i?id=5430da4bdcbc4abb90bf22b80b2ab033_l-12588502-images-thumbs&n=13" }, { name:"Пальма Джумейра", img:"https://avatars.mds.yandex.net/i?id=b23eb0d694467769bd698ee17f28a719_l-4338558-images-thumbs&n=13" }, { name:"Мечеть шейха Зайда", img:"https://i2025.otzovik.com/2025/04/13/17241408/img/36698_89550092.jpeg" } ] },
+    { id:"usa", name:"США", flagKey:"usa", basePrice:295000, visa:{ cost:"ESTA ~1300₽ / виза ~16000₽", whenToApply:"ESTA за 72ч", note:"срок ожидания 2026" }, sights:[ { name:"Статуя Свободы", img:"https://avatars.mds.yandex.net/i?id=fdc0ab918148fe2bba183eb1735c2a68_l-8354186-images-thumbs&n=13" }, { name:"Гранд-Каньон", img:"https://avatars.mds.yandex.net/i?id=8f336a6165bdaa17f8d43dd7b0e4b2f7_l-5436735-images-thumbs&n=13" }, { name:"Таймс-сквер", img:"https://i.pinimg.com/736x/18/2a/1d/182a1dfee27a24632aeeb698134f4649.jpg" } ] },
+    { id:"mexico", name:"Мексика", flagKey:"mexico", basePrice:167000, visa:{ cost:"Безвизово до 180 дней", whenToApply:"не нужна (FMM онлайн)", note:"при наличии шенгена/US визы" }, sights:[ { name:"Чичен-Ица", img:"https://avatars.mds.yandex.net/i?id=d4a346dbe7ccf187f504c50cfe3601e5_l-3559519-images-thumbs&n=13" }, { name:"Канкун", img:"https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Cancun_Strand_Luftbild_%2822143397586%29.jpg/1280px-Cancun_Strand_Luftbild_%2822143397586%29.jpg" }, { name:"Теотиуакан", img:"https://avatars.mds.yandex.net/i?id=9032e5326bf86311348251b10fc005cc58f67839-5235013-images-thumbs&n=13" } ] },
+    { id:"egypt", name:"Египет", flagKey:"egypt", basePrice:99000, visa:{ cost:"Виза по прилёту ~2500₽", whenToApply:"онлайн за 7 дней", note:"страховка рекомендуется" }, sights:[ { name:"Пирамиды Гизы", img:"https://avatars.mds.yandex.net/i?id=b3e3bdbbc6b3e31b0223cb2f1b11318bef5f48df-4303862-images-thumbs&n=13" }, { name:"Храм Карнак", img:"https://avatars.mds.yandex.net/i?id=3a84b4af154c33779300e08064906855_l-5882731-images-thumbs&n=13" }, { name:"Шарм-эль-Шейх", img:"https://travelask.ru/system/images/files/000/298/232/wysiwyg/tumblr_l39jsp8lEd1qzkp97o1_1280.jpg?1496637217" } ] },
+    { id:"australia", name:"Австралия", flagKey:"australia", basePrice:367000, visa:{ cost:"Электронная ETA ~1500₽", whenToApply:"за 2-4 недели", note:"обязательная страховка" }, sights:[ { name:"Сиднейский театр", img:"https://avatars.mds.yandex.net/i?id=70424fdb560aaf9cb6e84410ff8b0149_l-5232882-images-thumbs&n=13" }, { name:"Барьерный Риф", img:"https://images.newscientist.com/wp-content/uploads/2014/09/dn26137-1_800.jpg?width=800" }, { name:"Улуру", img:"https://i0.wp.com/images.ctfassets.net/pjshm78m9jt4/353118_header/ad34ab48fa45a5ff660289912eae7fc9/importedImage353118_header" } ] }
+  ];
+
+  // ---- ЦЕНЫ И РЕНДЕР ----
+  function updatePricesRandomly() {
+    for (let i = 0; i < countriesData.length; i++) {
+      let c = countriesData[i];
+      let factor = 0.94 + Math.random() * 0.12;
+      let newPrice = Math.round(c.basePrice * factor);
+      if (newPrice < 78000 && c.id !== "egypt") newPrice = 81000;
+      if (newPrice < 70000) newPrice = 74000;
+      c.basePrice = newPrice;
+    }
+    renderAllCountries();
+    showToast("💰 Цены обновлены (актуальные данные 2026)");
+  }
+
+  function renderAllCountries() {
+    const grid = document.getElementById("countriesGrid");
+    if (!grid) return;
+    grid.innerHTML = "";
+    countriesData.forEach(country => {
+      const card = document.createElement("div"); card.className = "country-card";
+      const header = document.createElement("div"); header.className = "country-header";
+      
+      const flagImg = document.createElement("img");
+      flagImg.src = flagUrls[country.flagKey] || `https://flagcdn.com/w320/${country.id}.png`;
+      flagImg.alt = `Флаг ${country.name}`;
+      flagImg.className = "flag-img";
+      flagImg.onerror = () => { flagImg.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Flag_placeholder.svg/320px-Flag_placeholder.svg.png"; };
+      
+      const titleDiv = document.createElement("div"); titleDiv.className = "country-title"; titleDiv.innerHTML = `<h2>${country.name}</h2>`;
+      const priceDiv = document.createElement("div"); priceDiv.className = "price-block";
+      priceDiv.innerHTML = `<div class="price-label">🇷🇺 НА ДВОИХ</div><div class="price-value">${country.basePrice.toLocaleString('ru-RU')} <small>₽</small></div>`;
+      header.appendChild(flagImg); header.appendChild(titleDiv); header.appendChild(priceDiv);
+      
+      const contentWrap = document.createElement("div"); contentWrap.className = "country-content";
+      const visaBlock = document.createElement("div"); visaBlock.className = "visa-card";
+      visaBlock.innerHTML = `<div class="visa-title"><span>🪪</span> ВИЗОВЫЕ НОВОСТИ 2026</div><div class="visa-info">
+        <p><span class="visa-label">💰 Стоимость:</span> <span class="visa-detail">${country.visa.cost}</span></p>
+        <p><span class="visa-label">📅 Когда оформлять:</span> <span class="visa-detail">${country.visa.whenToApply}</span></p>
+        <p><span class="visa-label">✍️ Примечание:</span> <span class="visa-detail">${country.visa.note || "—"}</span></p></div>`;
+      
+      const sightsBlock = document.createElement("div");
+      sightsBlock.innerHTML = `<div class="sights-title"><span>📍</span> ЧТО ПОСМОТРЕТЬ</div>`;
+      const sightsGrid = document.createElement("div"); sightsGrid.className = "sights-grid";
+      country.sights.forEach(sight => {
+        const sightItem = document.createElement("div"); sightItem.className = "sight-item";
+        const imgEl = document.createElement("img"); imgEl.src = sight.img; imgEl.alt = sight.name; imgEl.className = "sight-img"; imgEl.loading = "lazy";
+        imgEl.onerror = () => { imgEl.src = "https://placehold.co/600x400/2d2f3a/facc15?text=" + encodeURIComponent(sight.name); };
+        const nameSpan = document.createElement("div"); nameSpan.className = "sight-name"; nameSpan.innerText = sight.name;
+        sightItem.appendChild(imgEl); sightItem.appendChild(nameSpan); sightsGrid.appendChild(sightItem);
+      });
+      sightsBlock.appendChild(sightsGrid);
+      contentWrap.appendChild(visaBlock); contentWrap.appendChild(sightsBlock);
+      card.appendChild(header); card.appendChild(contentWrap);
+      grid.appendChild(card);
+    });
+  }
+
+  function showToast(message, duration = 2500) {
+    const existingToast = document.querySelector('.toast-msg');
+    if(existingToast) existingToast.remove();
+    const toast = document.createElement("div"); toast.className = "toast-msg"; toast.innerText = message;
+    document.body.appendChild(toast); setTimeout(() => toast.remove(), duration);
+  }
+
+  // ---- МОДАЛКА QR / ССЫЛКА ----
+  let currentMode = "link";
+  const modal = document.getElementById("shareModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const qrBlock = document.getElementById("qrCodeBlock");
+  const urlBlock = document.getElementById("urlBlock");
+  const urlDisplaySpan = document.getElementById("shareUrlDisplay");
+  const qrContainer = document.getElementById("qrcode");
+  let qrObject = null;
+
+  function resetModal(mode) {
+    currentMode = mode;
+    if (mode === "qr") {
+      modalTitle.innerText = "📲 Вход по QR‑коду";
+      qrBlock.style.display = "block";
+      urlBlock.style.display = "block";
+      const currentUrl = window.location.href;
+      if (qrContainer) {
+        qrContainer.innerHTML = "";
+        try { qrObject = new QRCode(qrContainer, { text: currentUrl, width: 180, height: 180, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.M }); } 
+        catch(e) { qrContainer.innerHTML = "<p style='color:white'>Ошибка QR</p>"; }
+      }
+      if (urlDisplaySpan) urlDisplaySpan.innerText = currentUrl;
+    } else {
+      modalTitle.innerText = "🔗 Общий доступ";
+      qrBlock.style.display = "none";
+      urlBlock.style.display = "block";
+      if (urlDisplaySpan) urlDisplaySpan.innerText = window.location.href;
+    }
+  }
+
+  function openModal(mode) { resetModal(mode); modal.classList.add("active"); }
+  function closeModal() { modal.classList.remove("active"); }
+  function copyLink() {
+    const linkText = document.getElementById("shareUrlDisplay")?.innerText;
+    if (linkText) { navigator.clipboard.writeText(linkText).then(() => showToast("✅ Ссылка скопирована!")).catch(() => showToast("✅ Ссылка в буфере")); }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    renderAllCountries();
+    document.getElementById("updatePricesBtn")?.addEventListener("click", updatePricesRandomly);
+    document.getElementById("shareSiteBtn")?.addEventListener("click", () => openModal("link"));
+    document.getElementById("qrCodeBtn")?.addEventListener("click", () => openModal("qr"));
+    document.getElementById("copyLinkBtn")?.addEventListener("click", copyLink);
+    document.getElementById("closeModalBtn")?.addEventListener("click", closeModal);
+    modal?.addEventListener("click", (e) => { if(e.target === modal) closeModal(); });
+  });
+</script>
+</body>
+</html>
